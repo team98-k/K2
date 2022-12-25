@@ -15,7 +15,10 @@ class _FirstScreenState extends State<FirstScreen> {
         title: Text("김필중"),
       ),
       body: Container(
-        child: TextButton(onPressed: (){}, child: Text("바보"), ),
+        child: TextButton(
+          onPressed: () {},
+          child: Text("바보"),
+        ),
       ),
     );
   }
