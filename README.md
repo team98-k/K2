@@ -14,3 +14,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+```
+git update-index --assume-unchanged .dart_tool/package_config.json
+git update-index --assume-unchanged .dart_tool/package_config_subset
+```
