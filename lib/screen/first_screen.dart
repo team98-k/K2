@@ -12,12 +12,12 @@ class _FirstScreenState extends State<FirstScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("김필중"),
+        title: const Text("김필중"),
       ),
-      body: Container(
+      body: SizedBox(
         child: TextButton(
           onPressed: () {},
-          child: Text("바보"),
+          child: const Text("바보"),
         ),
       ),
     );
