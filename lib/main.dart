@@ -21,14 +21,11 @@ class App extends StatelessWidget {
       ),
       body: Center(
           child: Column(
-        children: [
-          Container(
-            child: const Text(
-              "Hello K2",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
-            ),
+        children: const [
+          SizedBox(
+            child: Text("hello k2"),
           ),
-          const FirstScreen(),
+          FirstScreen(),
         ],
       )),
     );
