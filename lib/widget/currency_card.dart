@@ -7,14 +7,13 @@ class CurrencyCard extends StatelessWidget {
 
   final _blackColor = const Color(0xFF1F2123);
 
-  const CurrencyCard({
-    super.key,
-    required this.name,
-    required this.code,
-    required this.amount,
-    required this.icon,
-    required this.isInverted,
-  });
+  const CurrencyCard(
+      {super.key,
+      required this.name,
+      required this.code,
+      required this.amount,
+      required this.icon,
+      required this.isInverted});
 
   @override
   Widget build(BuildContext context) {
