@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k2/screens/register_screen.dart';
+import 'package:k2/screens/home_screen.dart';
 
 void main() {
   runApp(const App());
@@ -10,8 +10,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: RegisterScreen(),
+    return MaterialApp(
+      home: HomeScreen(),
     );
   }
 }
