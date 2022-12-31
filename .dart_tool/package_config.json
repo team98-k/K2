@@ -56,6 +56,24 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "firebase_core",
+      "rootUri": "file:///Users/gimjeonghun/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-2.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_core_platform_interface",
+      "rootUri": "file:///Users/gimjeonghun/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.5.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_core_web",
+      "rootUri": "file:///Users/gimjeonghun/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///Users/gimjeonghun/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -332,7 +350,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-12-30T08:42:03.409900Z",
+  "generated": "2022-12-31T08:47:40.851018Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }
