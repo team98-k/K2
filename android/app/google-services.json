@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "345320936259",
+    "project_id": "kim-4245c",
+    "storage_bucket": "kim-4245c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345320936259:android:d2931675db829a4a49d5f6",
+        "android_client_info": {
+          "package_name": "com.example.k2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345320936259-25qpog90e6p6lqimlak2eu7encu0rdvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCATcI5zt78lvoOUhkQ3HtvcArC6Krfb8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345320936259-25qpog90e6p6lqimlak2eu7encu0rdvh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
