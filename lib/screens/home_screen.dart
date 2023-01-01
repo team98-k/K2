@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:k2/models/webtoon_model.dart';
-import 'package:k2/screens/login_screen.dart';
 import 'package:k2/services/api_service.dart';
 import 'package:k2/widgets/weebtoon_widget.dart';
 
 import '../widgets/bottom_navi.dart';
+import '../widgets/top_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -15,18 +15,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 2,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.green,
-        title: const Center(
-          child: Text(
-            '오늘의 웹툰',
-            style: TextStyle(
-              fontSize: 24,
-            ),
-          ),
-        ),
+      appBar: TopBar(
+        appBar: AppBar(),
+        title: '오늘의 웹툰',
       ),
       body: FutureBuilder(
         future: webtoons,
