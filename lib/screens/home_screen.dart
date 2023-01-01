@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:k2/models/webtoon_model.dart';
+import 'package:k2/screens/login_screen.dart';
 import 'package:k2/services/api_service.dart';
 import 'package:k2/widgets/weebtoon_widget.dart';
+
+import '../widgets/bottom_navi.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -45,25 +48,7 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-          ),
-        ],
-        // currentIndex: _selectedIndex,
-        // selectedItemColor: Colors.amber[800],
-        // onTap: _onItemTapped,
-      ),
+      bottomNavigationBar: const BottomNavi(),
     );
   }
 

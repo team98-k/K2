@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k2/widgets/bottom_navi.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
           TextFormField(),
         ],
       ),
+      bottomNavigationBar: const BottomNavi(),
     );
   }
 }
