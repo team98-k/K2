@@ -12,13 +12,23 @@ class BottomNavi extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       onTap: (value) {
-        if (value == 1) {
-          Navigator.pop(
-              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        if (value == 0) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(),
+            ),
+            (Route<dynamic> route) => false,
+          );
         }
         if (value == 1) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const LoginScreen()));
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginScreen(),
+            ),
+            (Route<dynamic> route) => false,
+          );
         }
       },
       items: const <BottomNavigationBarItem>[
@@ -27,8 +37,8 @@ class BottomNavi extends StatelessWidget {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.business),
-          label: 'Business',
+          icon: Icon(Icons.login),
+          label: 'Login',
         ),
       ],
       // currentIndex: _selectedIndex,
