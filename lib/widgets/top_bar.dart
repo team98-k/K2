@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
-  final AppBar appBar;
   final String title;
   final bool center;
 
-  const TopBar(
-      {Key? key,
-      required this.appBar,
-      required this.title,
-      this.center = false})
+  const TopBar({Key? key, required this.title, this.center = false})
       : super(key: key);
 
   @override
@@ -18,6 +13,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 2,
       backgroundColor: Colors.white,
       foregroundColor: Colors.green,
+      automaticallyImplyLeading: true,
       title: Center(
         child: Text(
           title,
@@ -30,5 +26,5 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
+  Size get preferredSize => const Size.fromHeight(60.0);
 }

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:k2/screens/login_screen.dart';
+import 'package:k2/widgets/top_bar.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -58,6 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: const TopBar(title: '회원가입'),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(32.0),
@@ -101,14 +104,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           floatingLabelStyle:
                               MaterialStateTextStyle.resolveWith(
-                                  (Set<MaterialState> states) {
-                            final Color color =
-                                states.contains(MaterialState.error)
-                                    ? Theme.of(context).colorScheme.error
-                                    : Colors.black;
-                            return TextStyle(
-                                color: color, letterSpacing: 1.3, fontSize: 20);
-                          }),
+                            (Set<MaterialState> states) {
+                              final Color color =
+                                  states.contains(MaterialState.error)
+                                      ? Theme.of(context).colorScheme.error
+                                      : Colors.black;
+                              return TextStyle(
+                                  color: color,
+                                  letterSpacing: 1.3,
+                                  fontSize: 20);
+                            },
+                          ),
                         ),
                         onSaved: (val) {
                           setState(() {
@@ -148,30 +154,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           floatingLabelStyle:
                               MaterialStateTextStyle.resolveWith(
-                                  (Set<MaterialState> states) {
-                            final Color color =
-                                states.contains(MaterialState.error)
-                                    ? Theme.of(context).colorScheme.error
-                                    : Colors.black;
-                            return TextStyle(
-                                color: color, letterSpacing: 1.3, fontSize: 20);
-                          }),
+                            (Set<MaterialState> states) {
+                              final Color color =
+                                  states.contains(MaterialState.error)
+                                      ? Theme.of(context).colorScheme.error
+                                      : Colors.black;
+                              return TextStyle(
+                                  color: color,
+                                  letterSpacing: 1.3,
+                                  fontSize: 20);
+                            },
+                          ),
                           suffixIcon: IconButton(
                             icon: secureTempPasswd
                                 ? const Icon(Icons.lock)
                                 : const Icon(Icons.lock_open),
                             onPressed: () {
-                              setState(() {
-                                secureTempPasswd = !secureTempPasswd;
-                              });
+                              setState(
+                                () {
+                                  secureTempPasswd = !secureTempPasswd;
+                                },
+                              );
                             },
                           ),
                         ),
                         obscureText: secureTempPasswd,
                         onSaved: (val) {
-                          setState(() {
-                            passwd = val!;
-                          });
+                          setState(
+                            () {
+                              passwd = val!;
+                            },
+                          );
                         },
                         validator: (val) {
                           if (val!.isEmpty) {
@@ -201,22 +214,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           floatingLabelStyle:
                               MaterialStateTextStyle.resolveWith(
-                                  (Set<MaterialState> states) {
-                            final Color color =
-                                states.contains(MaterialState.error)
-                                    ? Theme.of(context).colorScheme.error
-                                    : Colors.black;
-                            return TextStyle(
-                                color: color, letterSpacing: 1.3, fontSize: 20);
-                          }),
+                            (Set<MaterialState> states) {
+                              final Color color =
+                                  states.contains(MaterialState.error)
+                                      ? Theme.of(context).colorScheme.error
+                                      : Colors.black;
+                              return TextStyle(
+                                  color: color,
+                                  letterSpacing: 1.3,
+                                  fontSize: 20);
+                            },
+                          ),
                           suffixIcon: IconButton(
                             icon: securePasswd
                                 ? const Icon(Icons.lock)
                                 : const Icon(Icons.lock_open),
                             onPressed: () {
-                              setState(() {
-                                securePasswd = !securePasswd;
-                              });
+                              setState(
+                                () {
+                                  securePasswd = !securePasswd;
+                                },
+                              );
                             },
                           ),
                         ),
@@ -240,20 +258,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 Container(height: 32.0),
                 SizedBox(
-                    width: double.infinity,
-                    height: 80,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          onSubmitPressed();
+                  width: double.infinity,
+                  height: 80,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        try {
+                          await FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                                  email: email, password: passwd);
+                        } catch (e) {
+                          print(e);
                         }
-                      },
-                      child: const Text('가입 완료',
-                          style: TextStyle(
-                            fontSize: 24,
-                          )),
-                    )),
+                        formKey.currentState!.save();
+                        onSubmitPressed();
+                      }
+                    },
+                    child: const Text(
+                      '가입 완료',
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

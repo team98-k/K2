@@ -15,8 +15,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: TopBar(
-        appBar: AppBar(),
+      appBar: const TopBar(
         title: '오늘의 웹툰',
       ),
       body: FutureBuilder(

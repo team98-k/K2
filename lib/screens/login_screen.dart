@@ -13,51 +13,151 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late String tempPasswd = '';
+  late String email = '';
+  late String passwd = '';
+  late bool secureTempPasswd = true;
+  late bool securePasswd = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: TopBar(
-        appBar: AppBar(),
+      appBar: const TopBar(
         title: '로그인',
       ),
-      body: Column(
-        children: [
-          TextFormField(),
-          TextFormField(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                    (Route<dynamic> route) => false,
-                  );
-                },
-                icon: const Icon(Icons.login),
+      body: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: '이메일',
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 200, 200, 200),
+                  ),
+                ),
+                filled: true,
+                fillColor: const Color.fromARGB(255, 250, 250, 250),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 200, 200, 200),
+                  ),
+                ),
+                floatingLabelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.black;
+                  return TextStyle(
+                      color: color, letterSpacing: 1.3, fontSize: 20);
+                }),
               ),
-              const SizedBox(
-                width: 50,
+              onSaved: (val) {
+                setState(() {
+                  email = val!;
+                });
+              },
+              validator: (val) {
+                if (val!.isEmpty) {
+                  return '이메일은 필수사항입니다.';
+                }
+
+                if (!RegExp(
+                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                    .hasMatch(val)) {
+                  return '잘못된 이메일 형식입니다.';
+                }
+
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+            ),
+            Container(height: 16.0),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: '비밀번호',
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 200, 200, 200),
+                  ),
+                ),
+                filled: true,
+                fillColor: const Color.fromARGB(255, 250, 250, 250),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 200, 200, 200),
+                  ),
+                ),
+                floatingLabelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.black;
+                  return TextStyle(
+                      color: color, letterSpacing: 1.3, fontSize: 20);
+                }),
+                suffixIcon: IconButton(
+                  icon: secureTempPasswd
+                      ? const Icon(Icons.lock)
+                      : const Icon(Icons.lock_open),
+                  onPressed: () {
+                    setState(() {
+                      secureTempPasswd = !secureTempPasswd;
+                    });
+                  },
+                ),
               ),
-              IconButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterScreen(),
-                    ),
-                    (Route<dynamic> route) => false,
-                  );
-                },
-                icon: const Icon(Icons.person_add_alt_outlined),
-              )
-            ],
-          )
-        ],
+              obscureText: secureTempPasswd,
+              onSaved: (val) {
+                setState(() {
+                  passwd = val!;
+                });
+              },
+              validator: (val) {
+                if (val!.isEmpty) {
+                  return '비밀번호는 필수사항입니다.';
+                }
+
+                tempPasswd = val;
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                      (Route<dynamic> route) => false,
+                    );
+                  },
+                  icon: const Icon(Icons.login),
+                ),
+                const SizedBox(
+                  width: 50,
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.person_add_alt_outlined),
+                )
+              ],
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: const BottomNavi(),
     );
