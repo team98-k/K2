@@ -3,16 +3,25 @@ import 'package:k2/screens/home_screen.dart';
 
 import '../screens/login_screen.dart';
 
-class BottomNavi extends StatelessWidget {
+class BottomNavi extends StatefulWidget {
   const BottomNavi({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<BottomNavi> createState() => _BottomNaviState();
+}
+
+class _BottomNaviState extends State<BottomNavi> {
+  static int current = 0;
+
+  @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      currentIndex: current,
       onTap: (value) {
-        if (value == 0) {
+        if (value == 0 && current != 0) {
+          current = 0;
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
@@ -21,7 +30,8 @@ class BottomNavi extends StatelessWidget {
             (Route<dynamic> route) => false,
           );
         }
-        if (value == 1) {
+        if (value == 1 && current != 1) {
+          current = 1;
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
