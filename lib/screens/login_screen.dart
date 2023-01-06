@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:k2/screens/pomodoros_screen.dart';
 import 'package:k2/screens/register_screen.dart';
 import 'package:k2/widgets/bottom_navi.dart';
 import 'package:k2/widgets/top_bar.dart';
@@ -13,11 +15,49 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final formKey = GlobalKey<FormState>();
   late String tempPasswd = '';
   late String email = '';
   late String passwd = '';
   late bool secureTempPasswd = true;
   late bool securePasswd = true;
+  void onSubmitPressed() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            alignment: Alignment.center,
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const <Widget>[
+                Expanded(
+                  child: Text(
+                    "로그인",
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              ],
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text("확인"),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PomodorosScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
+              ),
+            ],
+          );
+        });
+    setState(() {
+      //
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +165,33 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
+            Container(
+              height: 16.0,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 80,
+              child: ElevatedButton(
+                onPressed: () async {
+                  formKey.currentState!.save();
+                  onSubmitPressed();
+                  if (formKey.currentState!.validate()) {
+                    try {
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: email, password: passwd);
+                    } catch (e) {
+                      print(e);
+                    }
+                  }
+                },
+                child: const Text(
+                  '로그인',
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -155,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   icon: const Icon(Icons.person_add_alt_outlined),
                 )
               ],
-            )
+            ),
           ],
         ),
       ),

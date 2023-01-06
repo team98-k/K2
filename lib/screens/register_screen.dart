@@ -262,6 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 80,
                   child: ElevatedButton(
                     onPressed: () async {
+                      formKey.currentState!.save();
                       if (formKey.currentState!.validate()) {
                         try {
                           await FirebaseAuth.instance
@@ -270,7 +271,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         } catch (e) {
                           print(e);
                         }
-                        formKey.currentState!.save();
                         onSubmitPressed();
                       }
                     },
