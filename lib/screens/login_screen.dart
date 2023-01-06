@@ -5,7 +5,7 @@ import 'package:k2/screens/register_screen.dart';
 import 'package:k2/widgets/bottom_navi.dart';
 import 'package:k2/widgets/top_bar.dart';
 
-import 'home_screen.dart';
+import 'first_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -173,15 +173,13 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 80,
               child: ElevatedButton(
                 onPressed: () async {
-                  formKey.currentState!.save();
+                  formKey.currentState?.save();
                   onSubmitPressed();
-                  if (formKey.currentState!.validate()) {
-                    try {
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: email, password: passwd);
-                    } catch (e) {
-                      print(e);
-                    }
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: email, password: passwd);
+                  } catch (e) {
+                    print(e);
                   }
                 },
                 child: const Text(
@@ -197,12 +195,11 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
+                        builder: (context) => const FirstScreen(),
                       ),
-                      (Route<dynamic> route) => false,
                     );
                   },
                   icon: const Icon(Icons.login),

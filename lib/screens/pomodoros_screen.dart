@@ -130,6 +130,12 @@ class _PomodorosScreenState extends State<PomodorosScreen> {
                             color: Color(0xFF232B55),
                           ),
                         ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.home,
+                          ),
+                        )
                       ],
                     ),
                   ),
