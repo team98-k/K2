@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:k2/screens/upload_screen.dart';
 import 'package:k2/screens/pomodoros_screen.dart';
 import 'package:k2/screens/register_screen.dart';
 import 'package:k2/widgets/bottom_navi.dart';
 import 'package:k2/widgets/top_bar.dart';
-
-import 'first_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -198,7 +197,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const FirstScreen(),
+                        builder: (context) => const UploadScreen(
+                          title: 'upload',
+                        ),
                       ),
                     );
                   },
