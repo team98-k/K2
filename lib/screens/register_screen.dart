@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:k2/widgets/onpressed.dart';
+import 'package:k2/widgets/on_submit_pressed.dart';
 import 'package:k2/screens/login_screen.dart';
 import 'package:k2/widgets/top_bar.dart';
 
