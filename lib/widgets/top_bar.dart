@@ -13,10 +13,12 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 2,
       backgroundColor: Colors.white,
       foregroundColor: Colors.green,
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 24,
+      title: Center(
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 24,
+          ),
         ),
       ),
     );

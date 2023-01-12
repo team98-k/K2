@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:k2/widgets/onpressed.dart';
 import 'package:k2/screens/login_screen.dart';
 import 'package:k2/widgets/top_bar.dart';
 
@@ -17,44 +18,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late String passwd = '';
   late bool secureTempPasswd = true;
   late bool securePasswd = true;
-
-  void onSubmitPressed() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            alignment: Alignment.center,
-            content: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const <Widget>[
-                Expanded(
-                  child: Text(
-                    "가입 완료",
-                    textAlign: TextAlign.center,
-                  ),
-                )
-              ],
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text("확인"),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const LoginScreen()),
-                    (Route<dynamic> route) => false,
-                  );
-                },
-              ),
-            ],
-          );
-        });
-    setState(() {
-      //
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -271,7 +234,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         } catch (e) {
                           print(e);
                         }
-                        onSubmitPressed();
+                        showDialog(
+                          context: context,
+                          builder: (context) => const OnSubmitPressed(
+                            str: 'str',
+                            nb: LoginScreen(),
+                          ),
+                        );
                       }
                     },
                     child: const Text(
