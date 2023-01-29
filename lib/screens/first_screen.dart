@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:k2/widgets/top_bar.dart';
 
@@ -11,6 +12,8 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
+  String test = "test";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +30,7 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
               (Route<dynamic> route) => false,
             );
+            FirebaseFirestore.instance.collection('test').add({"test": test});
           },
           child: const Center(
             child: Text(
